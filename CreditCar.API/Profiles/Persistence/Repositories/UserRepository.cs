@@ -37,9 +37,9 @@ public class UserRepository : BaseRepository, IUserRepository
         return await _context.Users.FindAsync(id);
     }
 
-    public async Task<User> FindByEmailAsync(string name)
+    public async Task<User> FindByEmailAsync(string email)
     {
-        return await _context.Users.FindAsync(name);
+        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
     public async Task<User> FindByDniAsync(int dni)

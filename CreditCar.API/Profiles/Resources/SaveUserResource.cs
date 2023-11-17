@@ -17,10 +17,8 @@ public class SaveUserResource
   public string Password { get; set; }
   
   [Required]
-  [MaxLength(8)]
   public int Dni { get; set; }
   
   [Required]
-  [MaxLength(5)]
   public int ZipCode { get; set; }
 }

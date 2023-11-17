@@ -17,7 +17,6 @@ public class UserService : IUserService
         _unitOfWork = unitOfWork;
     }
 
-
     public async Task<IEnumerable<User>> ListAsync()
     {
         return await _userRepository.ListAsync();
@@ -28,20 +27,16 @@ public class UserService : IUserService
         // Validate if email is already in use
         var existingEmail = await _userRepository.FindByEmailAsync(user.Email);
         if (existingEmail != null)
+        {
             return new UserResponse("Email already in use.");
-        
+        }
+
         // Validate if dni is already in use
         var existingDni = await _userRepository.FindByDniAsync(user.Dni);
         if (existingDni != null)
+        {
             return new UserResponse("Dni already in use.");
-        
-        // Validate dni length
-        if (user.Dni.ToString().Length != 8)
-            return new UserResponse("Dni must be 8 digits.");
-        
-        // Validate zipCode length
-        if (user.ZipCode.ToString().Length != 5)
-            return new UserResponse("ZipCode must be 5 digits.");
+        }
         
         try
         {
