@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using CreditCar.API.Profiles.Domain.Models;
 using CreditCar.API.Shared.Extensions;
+using CreditCar.API.Vehicles.Domain.Models;
 
 namespace CreditCar.API.Shared.Persistence.Contexts;
 
 public class AppDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<Vehicle> Vehicles { get; set; }
 
     public AppDbContext(DbContextOptions options) : base(options)
     {
@@ -25,6 +27,16 @@ public class AppDbContext : DbContext
         builder.Entity<User>().Property(p => p.LastName).IsRequired();
         builder.Entity<User>().Property(p => p.Email).IsRequired();
         builder.Entity<User>().Property(p => p.Password).IsRequired();
+        
+        // Vehicles
+        
+        builder.Entity<Vehicle>().ToTable("Vehicles");
+        builder.Entity<Vehicle>().HasKey(p => p.Id);
+        builder.Entity<Vehicle>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Vehicle>().Property(p => p.Brand).IsRequired();
+        builder.Entity<Vehicle>().Property(p => p.Model).IsRequired();
+        builder.Entity<Vehicle>().Property(p => p.Image).IsRequired();
+        builder.Entity<Vehicle>().Property(p => p.Price).IsRequired();
         
         // Apply Snake Case Naming Convention
         
