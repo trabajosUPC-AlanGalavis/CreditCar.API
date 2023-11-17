@@ -64,6 +64,12 @@ public class AppDbContext : DbContext
         builder.Entity<Payment>().Property(p => p.Tcea).IsRequired();
         builder.Entity<Payment>().Property(p => p.Tir).IsRequired();
         
+        // Relationships
+        builder.Entity<User>()
+            .HasMany(p => p.Payments)
+            .WithOne(p => p.User)
+            .HasForeignKey(p => p.UserId);
+        
         
         // Apply Snake Case Naming Convention
         

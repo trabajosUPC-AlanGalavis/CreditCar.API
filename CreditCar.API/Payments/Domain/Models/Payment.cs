@@ -1,3 +1,5 @@
+using CreditCar.API.Profiles.Domain.Models;
+
 namespace CreditCar.API.Payments.Domain.Models;
 
 public class Payment
@@ -25,7 +27,6 @@ public class Payment
     
     // Relationships
     
-    //public int PlanId { get; set; }
-    
-    //public IList<Plan> Plans { get; set; } = new List<Plan>();
+    public int UserId { get; set; }
+    public User User { get; set; }
 }

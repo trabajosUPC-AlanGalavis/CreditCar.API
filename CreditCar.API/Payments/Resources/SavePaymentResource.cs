@@ -40,4 +40,6 @@ public class SavePaymentResource
   public float Tcea { get; set; }
   [Required]
   public float Tir { get; set; }
+  [Required]
+  public int UserId { get; set; }
 }

@@ -1,4 +1,6 @@
-﻿namespace CreditCar.API.Payments.Resources;
+﻿using CreditCar.API.Profiles.Resources;
+
+namespace CreditCar.API.Payments.Resources;
 
 public class PaymentResource
 {
@@ -21,4 +23,5 @@ public class PaymentResource
     public float Van { get; set; }
     public float Tcea { get; set; }
     public float Tir { get; set; }
+    public UserResource User { get; set; }
 }
