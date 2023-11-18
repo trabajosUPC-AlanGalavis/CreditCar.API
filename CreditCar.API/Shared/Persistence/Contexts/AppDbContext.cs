@@ -8,7 +8,8 @@ namespace CreditCar.API.Shared.Persistence.Contexts;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<User> Users { get; set; }
+    public DbSet<Customer> Users { get; set; }
+    public DbSet<Dealership> Dealerships { get; set; }
     public DbSet<Vehicle> Vehicles { get; set; }
     public DbSet<Payment> Payments { get; set; }
 
@@ -22,13 +23,18 @@ public class AppDbContext : DbContext
         
         // Users
         
-        builder.Entity<User>().ToTable("Users");
-        builder.Entity<User>().HasKey(p => p.Id);
-        builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<User>().Property(p => p.FirstName).IsRequired();
-        builder.Entity<User>().Property(p => p.LastName).IsRequired();
-        builder.Entity<User>().Property(p => p.Email).IsRequired();
-        builder.Entity<User>().Property(p => p.Password).IsRequired();
+        builder.Entity<Customer>().ToTable("Users");
+        builder.Entity<Customer>().HasKey(p => p.Id);
+        builder.Entity<Customer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Customer>().Property(p => p.FirstName).IsRequired();
+        builder.Entity<Customer>().Property(p => p.LastName).IsRequired();
+        
+        // Dealership
+        
+        builder.Entity<Dealership>().ToTable("Dealership");
+        builder.Entity<Dealership>().HasKey(p => p.Id);
+        builder.Entity<Dealership>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Dealership>().Property(p => p.Name).IsRequired();
         
         // Vehicles
         
@@ -61,15 +67,25 @@ public class AppDbContext : DbContext
         builder.Entity<Payment>().Property(p => p.FormattedRateValue).IsRequired();
         builder.Entity<Payment>().Property(p => p.Cok).IsRequired();
         builder.Entity<Payment>().Property(p => p.Van).IsRequired();
+        builder.Entity<Payment>().Property(p => p.Tea).IsRequired();
         builder.Entity<Payment>().Property(p => p.Tcea).IsRequired();
         builder.Entity<Payment>().Property(p => p.Tir).IsRequired();
         
         // Relationships
-        builder.Entity<User>()
+        builder.Entity<Customer>()
             .HasMany(p => p.Payments)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
+            .WithOne(p => p.Customer)
+            .HasForeignKey(p => p.CustomerId);
         
+        builder.Entity<Vehicle>()
+            .HasMany(p => p.Payments)
+            .WithOne(p => p.Vehicle)
+            .HasForeignKey(p => p.VehicleId);
+        
+        builder.Entity<Dealership>()
+            .HasMany(p => p.Payments)
+            .WithOne(p => p.Dealership)
+            .HasForeignKey(p => p.DealershipId);
         
         // Apply Snake Case Naming Convention
         

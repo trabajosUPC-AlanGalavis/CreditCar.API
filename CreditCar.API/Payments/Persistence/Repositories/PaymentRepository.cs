@@ -36,4 +36,28 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
     {
         return await _context.Payments.FindAsync(id);
     }
+    
+    public async Task<IEnumerable<Payment>> FindByCustomerIdAsync(int customerId)
+    {
+        return await _context.Payments
+            .Where(p => p.CustomerId == customerId)
+            .Include(p => p.Customer)
+            .ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Payment>> FindByVehicleIdAsync(int vehicleId)
+    {
+        return await _context.Payments
+            .Where(p => p.VehicleId == vehicleId)
+            .Include(p => p.Customer)
+            .ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Payment>> FindByDealershipIdAsync(int dealershipId)
+    {
+        return await _context.Payments
+            .Where(p => p.DealershipId == dealershipId)
+            .Include(p => p.Customer)
+            .ToListAsync();
+    }
 }

@@ -1,4 +1,6 @@
-﻿using CreditCar.API.Profiles.Resources;
+﻿using CreditCar.API.Profiles.Domain.Models;
+using CreditCar.API.Profiles.Resources;
+using CreditCar.API.Vehicles.Resources;
 
 namespace CreditCar.API.Payments.Resources;
 
@@ -21,7 +23,10 @@ public class PaymentResource
     public float FormattedRateValue { get; set; }
     public float Cok { get; set; }
     public float Van { get; set; }
+    public float Tea { get; set; }
     public float Tcea { get; set; }
     public float Tir { get; set; }
-    public UserResource User { get; set; }
+    public CustomerResource Customer { get; set; }
+    public VehicleResource Vehicle { get; set; }
+    public DealershipResource Dealership { get; set; }
 }

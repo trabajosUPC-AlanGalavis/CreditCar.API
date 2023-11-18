@@ -13,4 +13,10 @@ public interface IPaymentRepository
     void Remove(Payment payment);
     
     Task<Payment> FindByIdAsync(int id);
+    
+    Task<IEnumerable<Payment>> FindByCustomerIdAsync(int customerId);
+    
+    Task<IEnumerable<Payment>> FindByDealershipIdAsync(int dealershipId);
+    
+    Task<IEnumerable<Payment>> FindByVehicleIdAsync(int vehicleId);
 }

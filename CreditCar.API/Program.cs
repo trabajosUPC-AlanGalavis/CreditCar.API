@@ -37,10 +37,12 @@ builder.Services.AddDbContext<AppDbContext>(
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 // Dependency Injection Configuration
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddScoped<IDealershipRepository, DealershipRepository>();
+builder.Services.AddScoped<IDealershipService, DealershipService>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

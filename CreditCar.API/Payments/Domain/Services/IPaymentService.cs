@@ -9,4 +9,7 @@ public interface IPaymentService
     Task<PaymentResponse> SaveAsync(Payment payment);
     Task<PaymentResponse> UpdateAsync(int id, Payment payment);
     Task<PaymentResponse> DeleteAsync(int id);
+    Task<IEnumerable<Payment>> ListByUserIdAsync(int userId);
+    Task<IEnumerable<Payment>> ListByDealershipIdAsync(int dealershipId);
+    Task<IEnumerable<Payment>> ListByVehicleIdAsync(int vehicleId);
 }

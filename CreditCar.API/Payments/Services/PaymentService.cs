@@ -59,6 +59,7 @@ public class PaymentService : IPaymentService
         existingPayment.FormattedRateValue = payment.FormattedRateValue;
         existingPayment.Cok = payment.Cok;
         existingPayment.Van = payment.Van;
+        existingPayment.Tea = payment.Tcea;
         existingPayment.Tcea = payment.Tcea;
         existingPayment.Tir = payment.Tir;
         
@@ -91,5 +92,20 @@ public class PaymentService : IPaymentService
         {
             return new PaymentResponse($"An error occurred while deleting the payment: {e.Message}");
         }
+    }
+    
+    public async Task<IEnumerable<Payment>> ListByUserIdAsync(int userId)
+    {
+        return await _paymentRepository.FindByCustomerIdAsync(userId);
+    }
+    
+    public async Task<IEnumerable<Payment>> ListByVehicleIdAsync(int vehicleId)
+    {
+        return await _paymentRepository.FindByVehicleIdAsync(vehicleId);
+    }
+    
+    public async Task<IEnumerable<Payment>> ListByDealershipIdAsync(int dealershipId)
+    {
+        return await _paymentRepository.FindByDealershipIdAsync(dealershipId);
     }
 }

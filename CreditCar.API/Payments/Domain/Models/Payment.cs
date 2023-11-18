@@ -1,4 +1,5 @@
 using CreditCar.API.Profiles.Domain.Models;
+using CreditCar.API.Vehicles.Domain.Models;
 
 namespace CreditCar.API.Payments.Domain.Models;
 
@@ -21,12 +22,17 @@ public class Payment
     public float FormattedRateValue { get; set; }
     public float Cok { get; set; }
     public float Van { get; set; }
+    public float Tea { get; set; }
     public float Tcea { get; set; }
     public float Tir { get; set; }
    
     
     // Relationships
     
-    public int UserId { get; set; }
-    public User User { get; set; }
+    public int CustomerId { get; set; }
+    public Customer Customer { get; set; }
+    public int VehicleId { get; set; }
+    public Vehicle Vehicle { get; set; }
+    public int DealershipId { get; set; }
+    public Dealership Dealership { get; set; }
 }

@@ -37,9 +37,15 @@ public class SavePaymentResource
   [Required]
   public float Van { get; set; }
   [Required]
+  public float Tea { get; set; }
+  [Required]
   public float Tcea { get; set; }
   [Required]
   public float Tir { get; set; }
   [Required]
   public int UserId { get; set; }
+  [Required]
+  public int VehicleId { get; set; }
+  [Required]
+  public int DealershipId { get; set; }
 }
